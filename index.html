@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Adivinhação de Cores</title>
+</head>
+<body>
+    <h1>Jogo da Adivinhação de Cores</h1>
+    <p>Essse é um jogo de adivinhação. Você tem abaixo um grupo de cores possíveis e 3 tentativas para adivinhar o computador escolheu.</p>
+    <div style="margin: auto;">
+        <p> 'red', 'green', 'blue', 'yellow', 'orange', 'pink', 'purple', 'brown', 'gray', 'black'</p>
+    </div>
+    <p>Digite até 3 cores para tentar adivinhar a cor que o computador escolheu.</p>
+    <input type="text" id="corInput" placeholder="Digite uma cor">
+    <button onclick="tentarAdivinhar()">Tentar</button>
+    <p id="tentativas">Tentativas restantes: 3</p>
+    <p id="resultado"></p>
+    <input type="button" value="Começar de novo" onClick="window.location.reload()"> 
+
+    <script src="jogo.js"></script>
+</body>
+</html>
