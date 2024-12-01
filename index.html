@@ -3,20 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo da Adivinhação de Cores</title>
+    <title>Jogo de Adivinhação de Cores</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-color: #f0f4f8;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 500px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        #feedback {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #f44336;
+        }
+
+        #coresDisponiveis {
+            margin: 20px 0;
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        input {
+            padding: 10px;
+            width: 80%;
+            margin: 10px 0;
+            font-size: 1.1em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1.1em;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        footer {
+            background-color: #f8f8f8;
+            padding: 2px 0;
+            text-align: center;
+            border-top: 1px solid #ddd;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        footer h6 {
+            font-size: 1em;
+            color: #777;
+            margin: 0;
+        }
+    </style>
 </head>
 <body>
-    <h1>Jogo da Adivinhação de Cores</h1>
-    <p>Essse é um jogo de adivinhação. Você tem abaixo um grupo de cores possíveis e 3 tentativas para adivinhar o computador escolheu.</p>
-    <div style="margin: auto;">
-        <p> 'red', 'green', 'blue', 'yellow', 'orange', 'pink', 'purple', 'brown', 'gray', 'black'</p>
+    <div class="container">
+        <h1>Jogo de Adivinhação de Cores</h1>
+        <p>O computador selecionou aleatoriamente 10 cores das disponíveis no HTML Color Names, as quais estão listadas
+            abaixo, e escolheu uma. Seu desafio é adivinhar qual a cor escolhida.</p>
+        <div id="coresDisponiveis"><strong>Cores selecionadas: </strong> <span id="listaCores"></span></div>
+        <input type="text" id="corInput" placeholder="Digite uma cor">
+        <button onclick="tentarAdivinhar()">Tentar adivinhar</button>
+        <p id="feedback"></p>
     </div>
-    <p>Digite até 3 cores para tentar adivinhar a cor que o computador escolheu.</p>
-    <input type="text" id="corInput" placeholder="Digite uma cor">
-    <button onclick="tentarAdivinhar()">Tentar</button>
-    <p id="tentativas">Tentativas restantes: 3</p>
-    <p id="resultado"></p>
-    <input type="button" value="Começar de novo" onClick="window.location.reload()"> 
+
+    <footer>
+        <div>
+            <h6>Desenvolvido por Mylena</h6>
+        </div>
+    </footer>
 
     <script src="jogo.js"></script>
 </body>

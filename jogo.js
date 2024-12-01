@@ -1,11 +1,31 @@
-// Array com 10 cores possíveis
-const coresPossiveis = ['red', 'green', 'blue', 'yellow', 'orange', 'pink', 'purple', 'brown', 'gray', 'black'];
+const todasAsCores = [
+    'AliceBlue', 'AntiqueWhite', 'Aqua', 'Aquamarine', 'Azure', 'Beige', 'Bisque', 'Black', 
+    'BlanchedAlmond', 'Blue', 'BlueViolet', 'Brown', 'BurlyWood', 'CadetBlue', 'Chartreuse', 
+    'Chocolate', 'Coral', 'CornflowerBlue', 'Cornsilk', 'Crimson', 'Cyan', 'DarkBlue', 
+    'DarkCyan', 'DarkGoldenRod', 'DarkGray', 'DarkGreen', 'DarkKhaki', 'DarkMagenta', 
+    'DarkOliveGreen', 'DarkOrange', 'DarkOrchid', 'DarkRed', 'DarkSalmon', 'DarkSeaGreen', 
+    'DarkSlateBlue', 'DarkSlateGray', 'DarkTurquoise', 'DarkViolet', 'DeepPink', 'DeepSkyBlue', 
+    'DimGray', 'DodgerBlue', 'FireBrick', 'FloralWhite', 'ForestGreen', 'Fuchsia', 'Gainsboro', 
+    'GhostWhite', 'Gold', 'GoldenRod', 'Gray', 'Green', 'GreenYellow', 'HoneyDew', 'HotPink', 
+    'IndianRed', 'Indigo', 'Ivory', 'Khaki', 'Lavender', 'LavenderBlush', 'LawnGreen', 
+    'LemonChiffon', 'LightBlue', 'LightCoral', 'LightCyan', 'LightGoldenRodYellow', 'LightGray', 
+    'LightGreen', 'LightPink', 'LightSalmon', 'LightSeaGreen', 'LightSkyBlue', 'LightSlateGray', 
+    'LightSteelBlue', 'LightYellow', 'Lime', 'LimeGreen', 'Linen', 'Magenta', 'Maroon', 
+    'MediumAquaMarine', 'MediumBlue', 'MediumOrchid', 'MediumPurple', 'MediumSeaGreen', 
+    'MediumSlateBlue', 'MediumSpringGreen', 'MediumTurquoise', 'MediumVioletRed', 'MidnightBlue', 
+    'MintCream', 'MistyRose', 'Moccasin', 'NavajoWhite', 'Navy', 'OldLace', 'Olive', 'OliveDrab', 
+    'Orange', 'OrangeRed', 'Orchid', 'PaleGoldenRod', 'PaleGreen', 'PaleTurquoise', 'PaleVioletRed', 
+    'PapayaWhip', 'PeachPuff', 'Peru', 'Pink', 'Plum', 'PowderBlue', 'Purple', 'RebeccaPurple', 
+    'Red', 'RosyBrown', 'RoyalBlue', 'SaddleBrown', 'Salmon', 'SandyBrown', 'SeaGreen', 
+    'SeaShell', 'Sienna', 'Silver', 'SkyBlue', 'SlateBlue', 'SlateGray', 'Snow', 'SpringGreen', 
+    'SteelBlue', 'Tan', 'Teal', 'Thistle', 'Tomato', 'Turquoise', 'Violet', 'Wheat', 'White', 
+    'WhiteSmoke', 'Yellow', 'YellowGreen'
+];
 
-// Função para escolher 3 cores aleatórias
 function escolherCoresAleatorias() {
     const coresEscolhidas = [];
-    while (coresEscolhidas.length < 3) {
-        const corAleatoria = coresPossiveis[Math.floor(Math.random() * coresPossiveis.length)];
+    while (coresEscolhidas.length < 10) {
+        const corAleatoria = todasAsCores[Math.floor(Math.random() * todasAsCores.length)];
         if (!coresEscolhidas.includes(corAleatoria)) {
             coresEscolhidas.push(corAleatoria);
         }
@@ -13,42 +33,28 @@ function escolherCoresAleatorias() {
     return coresEscolhidas;
 }
 
-let coresSorteadas = escolherCoresAleatorias();  // Agora vai sortear 3 cores
-let tentativas = 3;
+const coresSorteadas = escolherCoresAleatorias();
 
-// Função chamada quando o usuário tenta adivinhar
+document.getElementById("listaCores").textContent = coresSorteadas.join(", ");
+
+const corEscolhida = coresSorteadas[Math.floor(Math.random() * coresSorteadas.length)];
+
 function tentarAdivinhar() {
-    const corInput = document.getElementById('corInput').value.trim().toLowerCase();
-    const resultado = document.getElementById('resultado');
-    const tentativasText = document.getElementById('tentativas');
-   
-    // Verifica se o usuário digitou algo
-    if (corInput === "") {
-        resultado.textContent = "Por favor, digite uma cor.";
+    const input = document.getElementById("corInput").value.trim();
+    const feedback = document.getElementById("feedback");
+    if (!input) {
+        feedback.textContent = "Por favor, insira uma cor.";
         return;
     }
-
-    console.log(coresSorteadas)
-
-    // Verifica se a cor está na lista das cores sorteadas
-    if (coresSorteadas.includes(corInput)) {
-        // Se acertar, muda o fundo da tela para a cor escolhida
-        document.body.style.backgroundColor = corInput;
-        resultado.textContent = `Parabéns! Você acertou a cor ${corInput}.`;
-        tentativasText.textContent = "Você acertou!";
+    if (!coresSorteadas.includes(input)) {
+        feedback.textContent = `A cor "${input}" não está entre as cores disponíveis.`;
         return;
     }
-
-    // Caso contrário, diminui o número de tentativas
-    tentativas--;
-    if (tentativas > 0) {
-        resultado.textContent = `Você errou! Tente novamente.`;
-        tentativasText.textContent = `Tentativas restantes: ${tentativas}`;
+    if (input === corEscolhida) {
+        feedback.textContent = `Parabéns! Você acertou. A cor era "${corEscolhida}".`;
+        document.body.style.backgroundColor = corEscolhida;
     } else {
-        resultado.textContent = `Você perdeu! A cor era: ${coresSorteadas[Math.floor(Math.random() * coresSorteadas.length)]}`;
-        tentativasText.textContent = "Fim de jogo!";
+        const dica = input < corEscolhida ? "vem depois" : "vem antes";
+        feedback.textContent = `Você errou! Dica: a cor correta ${dica} de "${input}" na ordem alfabética.`;
     }
-
-    // Limpa o campo de input
-    document.getElementById('corInput').value = "";
 }
